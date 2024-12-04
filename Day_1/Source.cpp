@@ -2,11 +2,13 @@
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
+#include <numeric>
 #include <string>
 #include <vector>
 
 void solve() {
   int totalDist{};
+  int similarity{};
   std::string filename{"input.txt"};
   std::ifstream file;
   file.open(filename);
@@ -33,8 +35,12 @@ void solve() {
 
   for (int i{0}; i < lVec.size(); i++) {
     totalDist += abs(rVec[i] - lVec[i]);
+    similarity += lVec[i] * std::count(rVec.begin(), rVec.end(), lVec[i]);
   }
+  // End of Part 1
   std::cout << totalDist << '\n';
+  // End of Part 2
+  std::cout << similarity << '\n';
 }
 
 int main() {
